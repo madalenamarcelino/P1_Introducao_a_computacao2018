@@ -5,7 +5,9 @@
 int main() {
 	int bal = 100; // initial balance variable
 	int bet; // initial bet variable
+	int curbal; // ballence after the player has placed a bet
 	char opc; // variable for chosen option
+
 
 	srand((unsigned int) time(NULL));
 
@@ -26,17 +28,38 @@ int main() {
 	printf("!Start by betting your desired amount!\n");
 
 	printf("\n Select an option:\n");
-	scanf("%c", &opc); //read the option inserted
+	
 
 	while(1) {
-/**/
+/**/	scanf("%c", &opc); //read the option inserted
+
 		switch(opc) {
 
 			case 'b':
-				printf("How much money do you want to throw away? "); /
+				printf("How much money do you want to throw away? "); 
 				scanf("%d", &bet); //to save the amount of money the player wants to bet
 
-				break;
+				if(bet == 0) { // if the player tries to play without using money
+					printf("You can't play the game like this, use some money next time, use b to try again.\n");
+				} 
+				else if(bet > bal) { // if the player bets more than what he has
+					printf("Woah there buckaroo, you do not have that much on your account, try again with b\n");
+
+				} 
+				else if(bet <= bal) { //
+					printf("you have selected %d to use on this round", bet);
+					curbal = bal - bet;
+					printf(", your current balance is %d\n To continue select another option", curbal);
+
+				}
+
+				scanf("%c", &opc);
+
+				if(opc == 'n') {
+					
+				}
+				
+				break; //help
 			case 'n':
 				break;
 			case 'e':
