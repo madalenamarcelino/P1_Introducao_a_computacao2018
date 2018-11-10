@@ -34,6 +34,7 @@ int main() {
 	
 
 	while(defeat == 0) {
+
 	opc = getchar(); //read the option inserted
 
 		switch(opc) {
@@ -91,6 +92,14 @@ int main() {
 			case 'r':
 				break;
 			case 'h':
+				printf("b - Start betting\n");
+				printf("n <number> - the number you wish to bet on, from 1 to 35.\n");
+				printf("e - Bet on an even number.\n");
+				printf("o - Bet on an odd number.\n");
+				printf("r - Roll the roullete.\n");
+				printf("h - Help.\n");
+				printf("s - Show your current balance.\n");
+				printf("c - Cashout and finish the game.\n");
 				break;
 			case 's':
 				printf("your current balance is %d\n", curbal); //to see you current balance
