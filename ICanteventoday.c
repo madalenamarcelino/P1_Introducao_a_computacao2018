@@ -2,9 +2,23 @@
 #include <stdlib.h>
 #include <time.h>
 
+
+void delay(int milli_seconds) 
+{  
+    // Stroing start time 
+    clock_t start_time = clock(); 
+  
+    // looping till required time is not acheived 
+    while (clock() < start_time + milli_seconds) 
+        ; 
+} 
+
+
 int main() {
 	int bal = 100;	 // initial balance variable
-	int bet; 		 // initial bet variable
+	int bet = 0; 	 // initial bet variable
+	int mbet; 		 //minimum about you can bet based on the difficuty chose
+	char dif; 		 //the chosen dificulty setting
 	int curbal; 	 // ballence after the player has placed a bet
 	int defeat = 0;  // variable so you can exit the game
 	int num;		 // number the player bets on
@@ -14,6 +28,23 @@ int main() {
 	int ec;			 // chance of getting an even number
 	int oc;			 // chance of getting an odd number
 	
+
+	printf("Welcome! our game, it has 3 difficulty settings: \n- Easy (minimu bet of 1 euro)\n- Normal (minimum bet of 10 euros)\n- Hard (minimum bet of 20 euros)\nChoose the difficulty by typing in the letter 'e', 'n' or 'h' for each diffuclty, respectively.");
+  
+  	dif = getchar();
+
+    if (dif == 'e'){
+      printf("You have chosen the easy mode, with a minimum bet of 1 euro.");
+      mbet = 1;
+    }
+    else if (dif == 'n'){
+      printf("You have chosen the normal mode, with a minimum bet of 10 euros.");
+      mbet = 10;    
+    }
+    else if (dif == 'h') {
+      printf("You have chosen the hard mode, with a minimum bet of 20 euros.");
+      mbet = 20;
+    }
 
 	srand((unsigned int) time(NULL));
 
@@ -45,8 +76,8 @@ int main() {
 				printf("How much money do you want to throw away? "); 
 				scanf("%d", &bet); //to save the amount of money the player wants to bet
 				sscanf("%s",s);
-				if(bet <= 0) { // if the player tries to play without using money
-					printf("You can't play the game like this, use some money next time, use b to try again.\n");
+				if(bet < mbet) { // if the player tries to play without using money
+					printf("You can't play the game like this, use the minimum next time, use b to try again.\n");
 				} 
 				else if(bet > bal) { // if the player bets more than what he has
 					printf("Woah there buckaroo, stop playing around and bet something within your reach, try again with b.\n");
@@ -66,11 +97,11 @@ int main() {
 
 				printf("\n");
 				int numcasino = rand()%36; //random number generator for all numbers between 0 and 35
-				printf("Alright, Feelin lucky i see, which number do you wish to bet? Pick between 1-35.\n");
+				printf("Alright, feeling lucky i see, which number do you wish to bet? Pick between 1-35.\n");
 				scanf("%d", &num);
 
 
-				if(bet <= 0) { // in case the player starts witth n before b
+				if(bet < mbet) { // in case the player starts witth n before b
 					printf("You thought we were going to let you play without betting? Go back with 'b' and bet something before security decides that enough is enough, if you get what im saying.\n"); //error message
 				} 
 				else if(num == numcasino) { //if you get the number right, i'm not even sure if this is possible at the moment
@@ -94,8 +125,8 @@ int main() {
         		int ec = rand()%2;
 				printf("So you went for the 50/50 chance ey? Well good luck mate...\n");
 
-				if (bet <= 0) {
-					printf(" or so i would like to say, I suggest you bet something, you did not think we would allow you to play without betting did you? Press 'b' to go back to betting.\n");
+				if (bet < mbet) {
+					printf(" or so i would like to say, I suggest you bet the minimum. Press 'b' to go back to betting.\n");
 				}
 				else if(ec == 0){
 					curbal = curbal + bet * 2;
@@ -115,8 +146,8 @@ int main() {
         		int oc = rand()%2;
 				printf("So you went for the 50/50 chance ey? Hope you win...");
 
-				if (bet <= 0) {
-					printf(" or so i would like to say, in order to win you must bet, you did not think we would allow you to play without betting did you? Press 'b' to go back to betting.\n");
+				if (bet < mbet) {
+					printf(" or so i would like to say, in order to win you must bet, you did not think we would allow you to play without betting the minimum did you? Press 'b' to go back to betting.\n");
 				}
 				else if(oc == 0){
 					curbal = curbal + bet * 2;
@@ -155,6 +186,8 @@ int main() {
         		return 0;
 
 				break;
+			default: 
+        		break;	
 		
 		}
 	} 
