@@ -3,14 +3,14 @@
 #include <time.h>
 
 int main() {
-	int bal = 100; // initial balance variable
-	int bet; // initial bet variable
-	int curbal; // ballence after the player has placed a bet
-	int defeat = 0; // variable so you can exit the game
-	int num;
-	int numcasino;
-	char opc; // variable for chosen option
-	char*s;
+	int bal = 100;	 // initial balance variable
+	int bet; 		 // initial bet variable
+	int curbal; 	 // ballence after the player has placed a bet
+	int defeat = 0;  // variable so you can exit the game
+	int num;		 // number the player bets on
+	int numcasino;	 // number the house rolls
+	char opc; 		 // variable for chosen option
+	char*s;			 // ??????????????????
 	
 
 	srand((unsigned int) time(NULL));
@@ -59,7 +59,7 @@ int main() {
 
 				opc = getchar(); // changing cases
 				
-				break; //help
+				break; 
 			case 'n':
 				printf("Alright, Feelin lucky i see, which number do you wish to bet? Pick between 1-35\n");
 				scanf("%d", &num);
@@ -86,12 +86,30 @@ int main() {
 
 				break;
 			case 'e':
+				if(bet <= 0) {
+					printf("You can't play the game like this, use some money next time, use b to try again.\n"); //error message
+
+				}
+
 				break;
 			case 'o':
+				if(bet <= 0) {
+					printf("You can't play the game like this, use some money next time, use b to try again.\n"); //error message
+
+				}
+
 				break;
 			case 'r':
+				if(bet <= 0) {
+					printf("You can't play the game like this, use some money next time, use b to try again.\n"); //error message
+
+				}
+				
 				break;
 			case 'h':
+			//basically what was already said
+			//i was thinking of making this like more complex, like people can pick what they need help with
+
 				printf("b - Start betting\n");
 				printf("n <number> - the number you wish to bet on, from 1 to 35.\n");
 				printf("e - Bet on an even number.\n");
@@ -100,15 +118,14 @@ int main() {
 				printf("h - Help.\n");
 				printf("s - Show your current balance.\n");
 				printf("c - Cashout and finish the game.\n");
+
 				break;
 			case 's':
 				printf("your current balance is %d\n", curbal); //to see you current balance
 				break;
 			case 'c':
 				break;
-			default:
-				printf("Oops.\n"); // error message hat keeps creeping up into everything
-				break;
+		
 		}
 	} 
 
